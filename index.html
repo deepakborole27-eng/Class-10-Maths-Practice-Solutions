@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Magical Maths</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= HOME SCREEN ================= -->
+<div id="start" class="screen active">
+  <h1 id="title">MAGICAL MATHS</h1>
+</div>
+
+<!-- ================= CHAPTERS ================= -->
+<div id="chapters" class="screen">
+  <div id="chapterList"></div>
+</div>
+
+<!-- ================= MODE SCREEN ================= -->
+<div id="mode" class="screen">
+ <button onclick="startWorksheet()">Worksheet</button>
+ <button onclick="showScreen('chapters')">Go Back</button>
+</div>
+
+<!-- ================= WORKSHEET ================= -->
+<div id="worksheet" class="screen">
+  
+  <button id="backBtn" onclick="showScreen('chapters')">⬅ Back</button>
+  
+  <div id="questionsList"></div>
+
+</div>
+<!-- ================= RESULT SCREEN ================= -->
+<div id="resultScreen" class="screen">
+  <h2 id="score"></h2>
+  <h3 id="percentage"></h3>
+  <button onclick="goHome()">Home</button>
+</div>
+
+<!-- ================= JS ================= -->
+<script src="script.js"></script>
+
+</body>
+</html>
