@@ -507,7 +507,7 @@ worksheetDB["surface areas and volumes"] = [
 "A cuboid of dimensions 48 cm × 36 cm × 24 cm is melted and recast into a combination of a cylinder and a hemisphere of equal volumes. If the radius of both is 6 cm, find the height of the cylinder.",
 "A solid consists of a hemisphere of radius 7 cm on which a cone of same base radius and height 24 cm is mounted. The solid is painted. Find the total surface area that gets painted.",
 "A cylinder of radius 14 cm and height 28 cm has a conical cavity of same base and height removed from one end and a hemispherical cavity of same radius removed from the other end. Find the volume of the remaining solid.",
-"A sphere is recast into identical smaller spheres such that total surface area becomes 4 times the original. Find the number of smaller spheres and the radius of each if original radius is 12 cm.""
+"A sphere is recast into identical smaller spheres such that total surface area becomes 4 times the original. Find the number of smaller spheres and the radius of each if original radius is 12 cm."
 ];
 worksheetDB["polynomials"] = [
 "Find the zeroes of 3x² − 5x − 2 and verify the relationship between zeroes and coefficients.",
@@ -6654,3 +6654,11 @@ window.onload = function () {
     showScreen("chapters");
   }, 3000);
 };
+function openSolutions() {
+  console.log("Opening solutions for:", selectedChapter);
+
+  document.getElementById("solutionTitle").innerText =
+    "Solutions for: " + selectedChapter.toUpperCase();
+
+  showScreen("solutions");
+}
