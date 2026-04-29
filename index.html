@@ -23,15 +23,28 @@
 <!-- ================= MODE SCREEN ================= -->
 <div id="mode" class="screen">
  <button onclick="startWorksheet()">Worksheet</button>
- <button onclick="showScreen('chapters')">Go Back</button>
+<button id="solutionBackBtn" onclick="showScreen('worksheet')">⬅ Back</button>
 </div>
 
 <!-- ================= WORKSHEET ================= -->
 <div id="worksheet" class="screen">
   
-  <button id="backBtn" onclick="showScreen('chapters')">⬅ Back</button>
+  <div class="top-bar">
+    <button onclick="showScreen('chapters')">⬅ Back</button>
+    <button onclick="openSolutions()">Solutions</button>
+  </div>
   
   <div id="questionsList"></div>
+
+</div>
+<!-- ================= SOLUTIONS ================= -->
+<div id="solutions" class="screen">
+  
+  <button onclick="showScreen('worksheet')">⬅ Back</button>
+  
+  <h2 id="solutionTitle"></h2>
+
+  <h3>Solutions will be added soon</h3>
 
 </div>
 <!-- ================= RESULT SCREEN ================= -->
