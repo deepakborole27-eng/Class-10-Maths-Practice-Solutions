@@ -16,7 +16,6 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
 }
-
 /* ================= SCREENS ================= */
 .screen {
   display: none;
@@ -229,4 +228,32 @@ button:hover {
 }
 button:active {
   transform: scale(0.96);
+}
+#solutionBtn {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+
+  background: linear-gradient(135deg, #43e97b, #38f9d7);
+  color: white;
+}
+
+#solutionBtn:hover {
+  background: #003366;
+}
+#solutionTitle {
+  text-align: left;
+  margin-top: 60px;
+  margin-left: 20px;
+  font-size: 32px;
+}
+#solutionBackBtn {
+  display: block;
+  margin-top: 20px;
+  margin-left: 15px;
 }
