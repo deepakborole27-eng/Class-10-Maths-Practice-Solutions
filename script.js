@@ -6651,6 +6651,6 @@ function openSolutions() {
   showScreen("solutions");
 }
 function backFromMode() {
-  selectedChapter = "";   // 🔥 reset chapter
+  selectedChapter = "";
   showScreen("chapters");
 }
