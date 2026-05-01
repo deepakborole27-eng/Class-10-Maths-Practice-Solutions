@@ -6452,7 +6452,6 @@ let chapters = [
 ];
 
 // ================= SCREEN SWITCH =================
-console.log("JS IS RUNNING");
 
 // ================= GLOBAL VARIABLES =================
 
@@ -6462,32 +6461,8 @@ console.log("JS IS RUNNING");
 
 
 // ================= SCREEN SWITCH =================
-function showScreen(id) {
-  document.querySelectorAll(".screen").forEach(s => {
-    s.classList.remove("active");
-  });
-  document.getElementById(id).classList.add("active");
-}
+// go to worksheet screen
 
-// ================= LOAD CHAPTERS =================
-function loadChapters() {
-  const list = document.getElementById("chapterList");
-  list.innerHTML = "";
-
-  chapters.forEach(ch => {
-    const div = document.createElement("div");
-    div.className = "chapter";
-    div.innerText = ch.replace(/\b\w/g, c => c.toUpperCase());
-
-   div.onclick = () => {
-  selectedChapter = ch.toLowerCase().trim();
-  console.log("Chapter selected:", selectedChapter);
-  showScreen("mode");
-};
-
-    list.appendChild(div);
-  });
-}
 
 // ================= INTRO SCREEN =================
 function showIntro(text, time, next) {
@@ -6605,8 +6580,12 @@ function showResult() {
 
 // ================= WORKSHEET =================
 function startWorksheet() {
-  let key = selectedChapter.toLowerCase().trim();
+  if (!selectedChapter) {
+    alert("Please select a chapter first!");
+    return;
+  }
 
+  let key = selectedChapter.toLowerCase().trim();
   let qs = worksheetDB[key];
 
   if (!qs) {
@@ -6614,30 +6593,14 @@ function startWorksheet() {
     return;
   }
 
-  // go to worksheet screen
   showScreen("worksheet");
 
-  // get container
   let container = document.getElementById("questionsList");
-
-  // safety check
-  if (!container) {
-    console.error("questionsList not found!");
-    return;
-  }
-
-  // clear old questions
   container.innerHTML = "";
 
-  // add questions
   qs.forEach((q, index) => {
     let div = document.createElement("div");
-
-    // FIX: prevents Q1: Q1:
-    div.innerText = `Q${index + 1}: ${q.replace(/^Q\d+:\s*/, "")}`;
-
-    div.className = "question"; // optional for styling
-
+    div.innerText = `Q${index + 1}: ${q}`;
     container.appendChild(div);
   });
 }
@@ -6654,6 +6617,31 @@ window.onload = function () {
     showScreen("chapters");
   }, 3000);
 };
+function loadChapters() {
+  let container = document.getElementById("chapterList");
+  container.innerHTML = "";
+
+  chapters.forEach(ch => {
+    let div = document.createElement("div");
+    div.className = "chapter";
+    div.innerText = ch;
+
+    div.onclick = () => {
+      selectedChapter = ch;   // 🔥 VERY IMPORTANT
+      console.log("Selected:", selectedChapter);
+      showScreen("mode");
+    };
+
+    container.appendChild(div);
+  });
+}
+function showScreen(id) {
+  document.querySelectorAll(".screen").forEach(screen => {
+    screen.classList.remove("active");
+  });
+
+  document.getElementById(id).classList.add("active");
+}
 function openSolutions() {
   console.log("Opening solutions for:", selectedChapter);
 
@@ -6661,4 +6649,8 @@ function openSolutions() {
     "Solutions for: " + selectedChapter.toUpperCase();
 
   showScreen("solutions");
+}
+function backFromMode() {
+  selectedChapter = "";   // 🔥 reset chapter
+  showScreen("chapters");
 }
