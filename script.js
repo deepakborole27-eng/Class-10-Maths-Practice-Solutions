@@ -5,9 +5,10 @@ let questions = [];
 let currentQ = 0;
 let score = 0;
 let selectedChapter = "";
+let timerInterval;
 // ================= DATABASES =================
 const worksheetDB = {};
-worksheetDB["surface areas and volumes"] = [
+worksheetDB["Surface Areas and Volumes"] = [
 "A solid right circular cylinder of radius 7 cm and height 10 cm is melted and recast into spheres of radius 2 cm. Find the number of spheres formed.",
 "A sphere of radius 7 cm is melted and recast into a cube. Find the side of the cube.",
 "A toy is made by mounting a cone of radius 3 cm and height 4 cm on a hemisphere of same radius. Find total surface area.",
@@ -509,7 +510,7 @@ worksheetDB["surface areas and volumes"] = [
 "A cylinder of radius 14 cm and height 28 cm has a conical cavity of same base and height removed from one end and a hemispherical cavity of same radius removed from the other end. Find the volume of the remaining solid.",
 "A sphere is recast into identical smaller spheres such that total surface area becomes 4 times the original. Find the number of smaller spheres and the radius of each if original radius is 12 cm."
 ];
-worksheetDB["polynomials"] = [
+worksheetDB["Polynomials"] = [
 "Find the zeroes of 3x² − 5x − 2 and verify the relationship between zeroes and coefficients.",
 "If α, β are zeroes of x² − 7x + 10, find α² + β².",
 "Find a quadratic polynomial whose zeroes are 2 + √3 and 2 − √3.",
@@ -1644,7 +1645,7 @@ worksheetDB["pair of linear equations"] = [
 "The difference between two supplementary angles is 160°. Find them."
 ];
 
-worksheetDB["quadratic equations"] = [
+worksheetDB["Quadratic Equations"] = [
 "Q1: Solve using quadratic formula: 2x² - 7x + 3 = 0.",
 "Q2: Solve: 3x² + x - 4 = 0.",
 "Q3: Solve: 5x² - 13x + 6 = 0.",
@@ -2236,7 +2237,7 @@ worksheetDB["quadratic equations"] = [
 "Find two consecutive integers whose product is 6006",
 "Find two consecutive integers whose product is 7221"
 ]
-worksheetDB["arithmetic progressions"] = [
+worksheetDB["Arithmetic Progressions"] = [
 "Q1: Find the 20th term of the AP: 3, 7, 11, ...",
 "Q2: Find the 50th term of the AP: 5, 8, 11, ...",
 "Q3: Find the nth term of AP where a = 2 and d = 5.",
@@ -2828,7 +2829,7 @@ worksheetDB["arithmetic progressions"] = [
 "If Sn = 18n² + 8n, find nth term",
 "If Sn = n² + 30n, find nth term"
 ]
-worksheetDB["triangles"] = [
+worksheetDB["Triangles"] = [
 "Q1: Check whether triangles with sides (3, 4, 5) and (6, 8, 10) are similar.",
 "Q2: Check similarity using SSS: sides (5, 7, 9) and (10, 14, 18).",
 "Q3: Check similarity using SAS criterion.",
@@ -3392,7 +3393,7 @@ worksheetDB["triangles"] = [
 "Using similarity, prove Pythagoras theorem.",
 "Application: find height of a tower using shadow and triangle similarity."
 ]
-worksheetDB["heights and distances"] = [
+worksheetDB["Heights and Distances"] = [
 
 "From a point, angle of elevation of top of a tower is 30°. After moving 20 m closer, it becomes 60°. Find height of tower.",
 "Angle of elevation of a building is 45°. From a point 10 m away, it becomes 60°. Find height.",
@@ -3899,7 +3900,7 @@ worksheetDB["heights and distances"] = [
 "A tower subtends 30° at 40 m distance. Find height.",
 "A final mixed real-life height and distance application problem."
 ]
-worksheetDB["areas related to circles"] = [
+worksheetDB["Areas Related to Circles"] = [
 
 "Find area of sector of circle of radius 7 cm and angle 60°.",
 "Find length of arc of circle of radius 14 cm and angle 90°.",
@@ -4406,7 +4407,7 @@ worksheetDB["areas related to circles"] = [
 "Find area of hardest application problem combining circle, sector, and square.",
 "A square of side 28 cm is inscribed in a circle. Inside the square, a circle is also inscribed. Find the area of the region lying inside the square but outside both circles."
 ]
-worksheetDB["statistics"] = [
+worksheetDB["Statistics"] = [
 
   "Find mean of grouped data using step deviation method.",
 "Find missing value using mean formula.",
@@ -4912,7 +4913,7 @@ worksheetDB["statistics"] = [
 "Find conceptual question on when median is better than mean.",
 "Find final integrated statistics problem for exam preparation."
 ]
-worksheetDB["probability"] = [
+worksheetDB["Probability"] = [
 
 "Find probability of getting a head when a coin is tossed.",
 "Find probability of getting a tail when two coins are tossed.",
@@ -5419,7 +5420,7 @@ worksheetDB["probability"] = [
 "Find probability of getting alternating pattern in 5 tosses.",
 "Find probability of getting at least one head in 5 tosses."
 ]
-worksheetDB["trigonometry"] = [
+worksheetDB["Trigonometry"] = [
 
 "Prove that (sinθ / (1 + cosθ)) + ((1 + cosθ) / sinθ) = 2cosecθ.",
 "Prove that (1 - tan²θ)/(1 + tan²θ) = cos2θ.",
@@ -5926,7 +5927,7 @@ worksheetDB["trigonometry"] = [
 "Find maximum value of sinθ + cosθ",
 "Show sinθ + cosθ ≤ √2"
 ]
-worksheetDB["real numbers"] = [
+worksheetDB["Real Numbers"] = [
 
 "Use Euclid’s Division Algorithm to find HCF of 135 and 225.",
 "Use Euclid’s Division Algorithm to find HCF of 867 and 255.",
@@ -6437,18 +6438,18 @@ worksheetDB["real numbers"] = [
 
 // ================= CHAPTER LIST =================
 let chapters = [
-  "surface areas and volumes",
-  "polynomials",
-  "pair of linear equations",
-  "quadratic equations",
-  "arithmetic progressions",
-  "triangles",
-  "heights and distances",
-  "areas related to circles",
-  "statistics",
-  "probability",
-  "trigonometry",
-  "real numbers"
+  "Surface Areas and Volumes",
+  "Polynomials",
+  "Pair of Linear Equations",
+  "Quadratic Equations",
+  "Arithmetic Progressions",
+  "Triangles",
+  "Heights and Distances",
+  "Areas Related to Circles",
+  "Statistics",
+  "Probability",
+  "Trigonometry",
+  "Real Numbers"
 ];
 
 // ================= SCREEN SWITCH =================
