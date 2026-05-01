@@ -6585,7 +6585,7 @@ function startWorksheet() {
     return;
   }
 
-  let key = selectedChapter.toLowerCase().trim();
+  let key = selectedChapter.trim();
   let qs = worksheetDB[key];
 
   if (!qs) {
