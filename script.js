@@ -6434,7 +6434,19 @@ worksheetDB["Real Numbers"] = [
 "Find HCF of 4096 and 3072 using Euclid’s algorithm",
 "Express 0.142857... in p/q form"
 ]
-
+const solutionsDB = {};
+solutionsDB["Surface Areas and Volumes"] = [
+   "Q1 - 45",
+"Q2 - 11.1676",
+"Q3 - 75π",
+"Q4 - (6860π)/3",
+"Q5 - 4r/3",
+"Q6 - h = r",
+"Q7 - 1 : 3",
+"Q8 - 8",
+"Q9 - 1 : 3",
+"Q10 - 2r",
+]
 
 // ================= CHAPTER LIST =================
 let chapters = [
