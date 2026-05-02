@@ -6655,3 +6655,29 @@ function backFromMode() {
   selectedChapter = "";
   showScreen("chapters");
 }
+function openSolutions() {
+  let container = document.getElementById("solutions");
+
+  document.getElementById("solutionTitle").innerText =
+    "Solutions for: " + selectedChapter.toUpperCase();
+
+  let sols = solutionDB[selectedChapter];
+
+  // Remove old content except title
+  let old = document.querySelector("#solutions h3");
+  if (old) old.remove();
+
+  if (!sols) {
+    let msg = document.createElement("h3");
+    msg.innerText = "Solutions not available!";
+    container.appendChild(msg);
+  } else {
+    sols.forEach((s, i) => {
+      let div = document.createElement("div");
+      div.innerText = `Q${i + 1}: ${s}`;
+      container.appendChild(div);
+    });
+  }
+
+  showScreen("solutions");
+}
