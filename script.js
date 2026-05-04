@@ -6690,44 +6690,27 @@ function loadChapters() {
     container.appendChild(div);
   });
 }
-function showScreen(id) {
-  document.querySelectorAll(".screen").forEach(screen => {
-    screen.classList.remove("active");
-  });
-
-  document.getElementById(id).classList.add("active");
-}
-function openSolutions() {
-  console.log("Opening solutions for:", selectedChapter);
-
-  document.getElementById("solutionTitle").innerText =
-    "Solutions for: " + selectedChapter.toUpperCase();
-
-  showScreen("solutions");
-}
-function backFromMode() {
-  selectedChapter = "";
-  showScreen("chapters");
-}
 function openSolutions() {
   let container = document.getElementById("solutions");
+  let title = document.getElementById("solutionTitle");
 
-  document.getElementById("solutionTitle").innerText =
-    "Solutions for: " + selectedChapter.toUpperCase();
+  title.innerText = "Solutions for: " + selectedChapter.toUpperCase();
 
-  let sols = solutionsDB[selectedChapter]; // ✅ FIXED HERE
+  let sols = solutionsDB[selectedChapter];
 
-  // Clear previous content (IMPORTANT)
-  container.innerHTML = "<h2 id='solutionTitle'></h2>";
+  // Remove old answers only
+  let oldAnswers = document.querySelectorAll(".sol");
+  oldAnswers.forEach(el => el.remove());
 
   if (!sols) {
     let msg = document.createElement("h3");
     msg.innerText = "Solutions not available!";
     container.appendChild(msg);
   } else {
-    sols.forEach((s, i) => {
+    sols.forEach((s) => {
       let div = document.createElement("div");
-      div.innerText = s; // already has Q1 - format
+      div.className = "sol";
+      div.innerText = s;
       container.appendChild(div);
     });
   }
