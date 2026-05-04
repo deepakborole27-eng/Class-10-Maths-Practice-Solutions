@@ -243,9 +243,8 @@ button:active {
   background: #003366;
 }
 #solutionTitle {
-  text-align: left;
-  margin-top: 60px;
-  margin-left: 20px;
+  text-align: center;
+  margin-top: 20px;
   font-size: 32px;
 }
 #solutionBackBtn {
@@ -254,8 +253,19 @@ button:active {
   margin-left: 15px;
 }
 .sol {
-  margin: 10px 20px;
-  padding: 10px;
+  width: 80%;
+  max-width: 600px;
+
+  margin: 12px auto;   /* centers horizontally */
+  padding: 15px;
+
   background: #f0f0f0;
-  border-radius: 8px;
+  border-radius: 10px;
+
+  font-size: 18px;     /* bigger text */
+  text-align: left;
+   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+#solutions {
+  padding: 20px;
 }
