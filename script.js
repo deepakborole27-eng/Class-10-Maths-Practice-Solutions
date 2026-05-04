@@ -6507,141 +6507,49 @@ let chapters = [
 ];
 
 // ================= SCREEN SWITCH =================
-
-// ================= GLOBAL VARIABLES =================
-
-// ================= DATABASES =================
-
-// ================= CHAPTER LIST =================
-
-
-// ================= SCREEN SWITCH =================
-// go to worksheet screen
-
-
-// ================= INTRO SCREEN =================
-function showIntro(text, time, next) {
-  document.getElementById("introText").innerText = text;
-  showScreen("intro");
-
-  setTimeout(() => {
-    next();
-  }, 4000);
-}
-
-// ================= TIMER =================
-function startTimer(minutes, type) {
-  clearInterval(timerInterval);
-
-  let time = minutes * 60;
-  let timerEl;
-
-  if (type === "mcq") {
-    timerEl = document.getElementById("timerMCQ");
-  } else {
-    timerEl = document.getElementById("timerWS");
-  }
-
-  timerInterval = setInterval(() => {
-    let min = Math.floor(time / 60);
-    let sec = time % 60;
-
-    timerEl.innerText = `${min}:${sec < 10 ? "0" : ""}${sec}`;
-
-    time--;
-
-    if (time < 0) {
-      clearInterval(timerInterval);
-
-      if (type === "mcq") {
-        showResult();
-      }
-    }
-  }, 1000);
-}
-
-// ================= MCQ MODE =================
-function startMCQ() {
-  currentQ = 0;
-  score = 0;
-
-  questions = mcqDB[selectedChapter];
-
-  if (!questions || questions.length === 0) {
-    alert("No MCQs found for this chapter!");
-    return;
-  }
-
-  showScreen("mcq");
-  loadMCQ();
-}
-
-// LOAD MCQ
-function loadMCQ() {
-  let q = questions[currentQ];
-
-  document.getElementById("mcqQ").innerText = q.q;
-
-  let optDiv = document.getElementById("options");
-  optDiv.innerHTML = "";
-
-  q.options.forEach((opt, i) => {
-    let btn = document.createElement("button");
-    btn.innerText = opt;
-
-    btn.onclick = () => checkAnswer(i);
-
-    optDiv.appendChild(btn);
-  });
-}
-// CHECK ANSWER
-function checkAnswer(selectedIndex) {
-  let buttons = document.querySelectorAll("#options button");
-
-  buttons.forEach((btn, i) => {
-    btn.disabled = true;
-
-    if (i === questions[currentQ].ans) {
-      btn.style.background = "green";
-    } else if (i === selectedIndex) {
-      btn.style.background = "red";
-    }
+function showScreen(id) {
+  document.querySelectorAll(".screen").forEach(screen => {
+    screen.classList.remove("active");
   });
 
-  if (selectedIndex === questions[currentQ].ans) {
-    score++;
-  }
+  document.getElementById(id).classList.add("active");
 }
 
-// NEXT MCQ
-function nextMCQ() {
-  currentQ++;
 
-  if (currentQ < questions.length) {
-    loadMCQ();
-  } else {
-    showResult();
-  }
+// ================= LOAD CHAPTERS =================
+function loadChapters() {
+  let container = document.getElementById("chapterList");
+  container.innerHTML = "";
+
+  chapters.forEach(ch => {
+    let div = document.createElement("div");
+    div.className = "chapter";
+    div.innerText = ch;
+
+    div.onclick = () => {
+      selectedChapter = ch;
+      showScreen("mode");
+    };
+
+    container.appendChild(div);
+  });
 }
-// ================= RESULT =================
-function showResult() {
-  showScreen("resultScreen");
 
-  let percent = Math.round((score / questions.length) * 100);
 
-  document.getElementById("score").innerText = `Score: ${score}/${questions.length}`;
-  document.getElementById("percentage").innerText = `Percentage: ${percent}%`;
+// ================= BACK FROM MODE =================
+function backFromMode() {
+  showScreen("chapters");
 }
 
-// ================= WORKSHEET =================
+
+// ================= START WORKSHEET =================
 function startWorksheet() {
   if (!selectedChapter) {
     alert("Please select a chapter first!");
     return;
   }
 
-  let key = selectedChapter.trim();
-  let qs = worksheetDB[key];
+  let qs = worksheetDB[selectedChapter];
 
   if (!qs) {
     alert("Worksheet not found!");
@@ -6659,51 +6567,24 @@ function startWorksheet() {
     container.appendChild(div);
   });
 }
-// ================= HOME =================
-function goHome() {
-  showScreen("start");
-}
 
-// ================= INIT =================
-window.onload = function () {
-  loadChapters();
 
-  setTimeout(() => {
-    showScreen("chapters");
-  }, 3000);
-};
-function loadChapters() {
-  let container = document.getElementById("chapterList");
-  container.innerHTML = "";
-
-  chapters.forEach(ch => {
-    let div = document.createElement("div");
-    div.className = "chapter";
-    div.innerText = ch;
-
-    div.onclick = () => {
-      selectedChapter = ch;   // 🔥 VERY IMPORTANT
-      console.log("Selected:", selectedChapter);
-      showScreen("mode");
-    };
-
-    container.appendChild(div);
-  });
-}
+// ================= OPEN SOLUTIONS =================
 function openSolutions() {
   let container = document.getElementById("solutions");
   let title = document.getElementById("solutionTitle");
 
-  title.innerText = "Solutions for: " + selectedChapter.toUpperCase();
+  // Set title
+  title.innerText = "Solutions for: " + selectedChapter;
+
+  // Remove old solutions
+  container.querySelectorAll(".sol, .noSol").forEach(el => el.remove());
 
   let sols = solutionsDB[selectedChapter];
 
-  // Remove old answers only
-  let oldAnswers = document.querySelectorAll(".sol");
-  oldAnswers.forEach(el => el.remove());
-
   if (!sols) {
     let msg = document.createElement("h3");
+    msg.className = "noSol";
     msg.innerText = "Solutions not available!";
     container.appendChild(msg);
   } else {
@@ -6717,3 +6598,23 @@ function openSolutions() {
 
   showScreen("solutions");
 }
+
+
+// ================= GO HOME =================
+function goHome() {
+  showScreen("start");
+
+  setTimeout(() => {
+    showScreen("chapters");
+  }, 2000);
+}
+
+
+// ================= INIT =================
+window.onload = function () {
+  loadChapters();
+
+  setTimeout(() => {
+    showScreen("chapters");
+  }, 3000);
+};
