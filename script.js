@@ -68,36 +68,36 @@ worksheetDB["Surface Areas and Volumes"] = [
   "A cylinder of radius 7 cm and height 21 cm is melted and recast into 7 cones each having the same base radius and height 7 cm. Compare their volumes.",
   "A cone is inscribed in a cylinder having same base and height. Find ratio of volumes.",
   "A hollow cylinder has external radius 14 cm, internal radius 10 cm and height 28 cm. Find volume of material used.",
-  "A cone is inscribed in a sphere of radius 7 cm such that its base lies on the great circle. Find the relation between height of cone and radius of sphere.",
-  "A cylinder of radius 7 cm and height 21 cm is melted and recast into 7 cones of same base radius and height. Find ratio of their volumes.",
+  "A solid metal sphere of radius 6 cm is melted and recast into a wire of diameter 0.4 cm. Find the length of the wire.",
+  "Three solid metallic spheres of radii 6 cm, 8 cm, and 10 cm respectively are melted to form a single solid sphere. Find the radius of the resulting sphere.",
   "A sphere is melted to form 3 identical cones. Find dimensions of each cone if base radius is given.",
   "A solid consists of a cone placed on a cylinder of same base radius. Find total volume.",
   "A cube is inscribed in a sphere. Find ratio of their volumes.",
   "A sphere of radius 7 cm is melted to form 3 identical cones each having base radius 3.5 cm. Find height of each cone.",
   "A solid consists of a cone of radius 3.5 cm and height 7 cm placed on a cylinder of the same base radius and height 14 cm. Find total volume.",
-  "A cone is hollowed out from a cylinder of same base and height. Find remaining volume.",
-  "A rectangular metal sheet 88 cm by 44 cm is rolled to form a cylinder. Find volume.",
+  "A metallic sphere of radius 7 cm is melted and recast into small cylinders of radius 1 cm and height 2 cm. Find the maximum number of full cylinders formed.",
+  "A sphere of radius 7 cm is melted to form 2 identical cones each having a base radius of 3.5 cm. Find the height of each cone.",
   "A cone is formed by cutting a sector of radius 21 cm and angle 120°. Find its volume.",
   "A sphere of radius 7 cm is inscribed in a cylinder. Find the ratio of their volumes.",
   "A sphere of radius 7 cm is inscribed in a cylinder. Find the ratio of their volumes.",
-  "A cone of radius 7 cm and height 14 cm is hollowed out from a cylinder of the same base and height. Find the remaining volume.",
+  "A sphere of radius 15 cm has a cylindrical hole of radius 5 cm drilled through its center. Find the volume of the remaining napkin ring shaped solid.",
   "A rectangular metal sheet of dimensions 88 cm × 44 cm is rolled along its length to form a cylinder. Find the volume of the cylinder formed.",
-  "A cone is formed by cutting a sector of a circle of radius 21 cm and angle 120°. Find its volume.",
+  "A cone of height 24 cm has a plane base of radius 6 cm. If it is melted and recast into a sphere, find the radius of the sphere.",
   "A sphere is recast into smaller spheres of radius 2 cm. Find number formed.",
   "A cylinder of radius 7 cm and height 21 cm is filled with water and poured into a cone of the same base radius. Find the height of the cone.",
   "A solid is a combination of a cone and a hemisphere of radius 3.5 cm. If height of cone is 7 cm, find total volume.",
   "A hemisphere of radius 7 cm is converted into a cylinder of same base radius. Find height of cylinder.",
   "A solid consists of two hemispheres of radius 3.5 cm joined by a cylinder of height 7 cm. Find the total surface area.",
-  "A right circular cone of radius 7 cm and height 24 cm is inscribed in a hemisphere of radius 7 cm. Find ratio of their volumes.",
+  " A right circular cone of radius 7 cm and height 24 cm is compared to a hemisphere of radius 7 cm. Find the ratio of the volume of the cone to the volume of the hemisphere.",
   "A hollow sphere has inner radius 7 cm and outer radius 10 cm. Find volume of material.",
-  "A cylinder of radius 7 cm and height 14 cm is melted into a sphere. Find radius of the sphere.",
-  "A solid is a combination of a cone and a hemisphere of radius 3.5 cm. If height of cone is 7 cm, find total volume.",
-  "A hemisphere of radius 7 cm is converted into a cylinder of the same base radius. Find height of the cylinder.",
+  "A well of diameter 3 m is dug 14 m deep. The earth taken out of it has been spread evenly all around it in the shape of a circular ring of width 4 m to form an embankment. Find the height of the embankment.",
+  " A shuttlecock used for playing badminton has the shape of a frustum of a cone is mounted on a hemisphere. If the external diameters of the frustum are 5 cm and 2 cm and the height of the entire shuttlecock is 7 cm, find its external surface area.",
+  "16 glass spheres each of radius 2 cm are packed into a cuboidal box of internal dimensions 16 cm × 8 cm × 8 cm and then the box is filled with water. Find the volume of water filled in the box.",
   "A sphere of radius 7 cm is converted into a cube. Find side length of cube.",
   "A cuboid of dimensions 21 cm × 14 cm × 7 cm is melted to form a cylinder of height 14 cm. Find radius of cylinder.",
-  "A hollow sphere has inner radius 7 cm and outer radius 10 cm. Find volume of material used.",
-  "A sphere is cut into 4 equal parts. If radius is 7 cm, find surface area of each part.",
-  "A cylinder of radius 7 cm and height 14 cm is cut into two equal halves along its axis. Find total surface area of both parts.",
+  "A cylinder, a cone, and a hemisphere have the same base and the same height. Find the ratio of their volumes in the simplest form.",
+  "A self-centering drill bit creates a conical hole in a steel block. If the hole is 3 cm deep and 2 cm wide at the top, find the volume of steel removed.",
+  "A hollow sphere has an inner radius of 7 cm and an outer radius of 10 cm. Find the volume of the material (metal) used to make the sphere.",
   "A cone is drilled out from sphere. Find remaining volume.",
   "A sphere is melted into 216 small spheres. Find radius of each.",
   "A cylinder is converted into 9 cones. Find ratio of volumes.",
@@ -6485,8 +6485,8 @@ const solutionsDB = {
    "Q47 - 224",
    "Q48 - 361.2832",
    "Q49 - 3335.3389",
-   "Q50 - 9.3333"
-  "Q51 - h = r",
+   "Q50 - 9.3333",
+   "Q51 - h = r",
    "Q52 - 3:7",
    "Q53 - 46",
    "Q54 - 2078.1635",
@@ -6621,7 +6621,11 @@ function startWorksheet() {
 
 // ================= OPEN SOLUTIONS =================
 function openSolutions() {
-  let container = document.getElementById("solutions");
+  if (!selectedChapter) {
+  alert("Select a chapter first!");
+  return;
+}
+  let container = document.getElementById("solutionList");
   let title = document.getElementById("solutionTitle");
 
   // Set title
