@@ -5029,8 +5029,8 @@ worksheetDB["Probability"] = [
     "Find the probability of getting at least one head when a single unbiased coin is tossed five times."
 ]
 worksheetDB["Trigonometry"] = [
-  "Prove that (sinθ / (1 + cosθ)) + ((1 + cosθ) / sinθ) = 2cosecθ.",
-    "Prove that (1 - tan²θ)/(1 + tan²θ) = cos2θ.",
+  "Evaluate (sinθ / (1 + cosθ)) + ((1 + cosθ) / sinθ)",
+    "Evaluate (1 - tan²θ)/(1 + tan²θ)",
     "If sinθ + cosθ = √2 cosθ, find tanθ.",
     "If tanθ = 1/2, find value of (sinθ - cosθ).",
     "Prove that (secθ - tanθ)(secθ + tanθ) = 1.",
@@ -5039,11 +5039,11 @@ worksheetDB["Trigonometry"] = [
     "Evaluate: (tan30° + cot60°).",
     "Evaluate: (sec60° - cosec30°).",
     "Evaluate: (sin²30° + cos²30°).",
-    "Prove that (sinθ + cosθ)² + (sinθ - cosθ)² = 2.",
-    "Prove that tanθ + cotθ = secθcosecθ.",
-    "Prove that (1 + tan²θ)(1 + cot²θ) = sec²θcosec²θ.",
-    "Prove that (sinθ / (1 - cosθ)) - ((1 - cosθ) / sinθ) = 2cotθ.",
-    "Prove that (secθ + tanθ)² + (secθ - tanθ)² = 4sec²θ - 2.",
+    "Evaluate: (sinθ + cosθ)² + (sinθ - cosθ)²",
+    "Evaluate: (tanθ + cotθ)",
+    "Evaluate: (1 + tan²θ)(1 + cot²θ)",
+    "Evaluate: (sinθ / (1 - cosθ)) - ((1 - cosθ) / sinθ)",
+    "Evaluate: (secθ + tanθ)² + (secθ - tanθ)²",
     "Find θ if sinθ = 1/2 and 0° < θ < 90°.",
     "Find θ if cosθ = √3/2.",
     "Find θ if tanθ = 1.",
